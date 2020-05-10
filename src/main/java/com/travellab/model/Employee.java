@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,6 +40,7 @@ public class Employee {
 
     private String phoneNumber;
 
+    @RestResource(exported = false)
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sale> sales;
 }

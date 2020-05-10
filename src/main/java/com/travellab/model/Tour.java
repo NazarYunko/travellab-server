@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -29,14 +30,15 @@ public class Tour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
-
+    @RestResource(exported = false)
     @ManyToOne
     private TourType tourType;
 
+    @RestResource(exported = false)
     @ManyToOne
     private Country country;
 
+    @RestResource(exported = false)
     @ManyToOne
     private Hotel hotel;
 
@@ -44,6 +46,7 @@ public class Tour {
 
     private LocalDateTime tourStopDate;
 
+    @RestResource(exported = false)
     @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
 }

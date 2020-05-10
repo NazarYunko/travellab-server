@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,11 +31,13 @@ public class Hotel {
 
     private String name;
 
+    @RestResource(exported = false)
     @ManyToOne(cascade = CascadeType.ALL)
     private Country country;
 
     private String address;
 
+    @RestResource(exported = false)
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Tour> tours;
 }

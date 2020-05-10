@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public class TicketReturn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @RestResource(exported = false)
     @OneToOne(mappedBy = "returnState")
     private Ticket ticket;
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,12 +26,15 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @RestResource(exported = false)
     @ManyToOne
     private Ticket ticket;
 
+    @RestResource(exported = false)
     @ManyToOne
     private Client client;
 
+    @RestResource(exported = false)
     @ManyToOne
     private Employee employee;
 

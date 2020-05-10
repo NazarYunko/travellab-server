@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-public class BeanConfiguration {
+public class CommonConfiguration {
 
     private static final String SIGNING_KEY = "signing_key";
 
