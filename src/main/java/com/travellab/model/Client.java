@@ -1,5 +1,6 @@
 package com.travellab.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.travellab.domain.UserType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,9 +28,9 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private int userId;
+    private Long userId;
 
     private String firstName;
 
@@ -37,7 +38,6 @@ public class Client {
 
     private String phoneNumber;
 
-    @RestResource(exported = false)
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sale> sales;
 }

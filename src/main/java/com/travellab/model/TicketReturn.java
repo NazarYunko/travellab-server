@@ -24,7 +24,7 @@ public class TicketReturn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @RestResource(exported = false)
     @OneToOne(mappedBy = "returnState")

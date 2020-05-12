@@ -24,7 +24,7 @@ public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @RestResource(exported = false)
     @ManyToOne

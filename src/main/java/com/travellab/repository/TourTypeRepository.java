@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource()
-public interface TourTypeRepository extends JpaRepository<TourType, Integer> {
+public interface TourTypeRepository extends JpaRepository<TourType, Long> {
 }

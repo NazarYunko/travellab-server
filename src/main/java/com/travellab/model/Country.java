@@ -1,5 +1,6 @@
 package com.travellab.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +9,15 @@ import lombok.ToString;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.util.Set;
 
 @Getter
@@ -26,15 +30,27 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 
-    @RestResource(exported = false)
+    @Column(columnDefinition = "text")
+    private String description;
+
+    @Column(columnDefinition = "text")
+    private String kitchen;
+
+    @Column(columnDefinition = "text")
+    private String geography;
+
+    @Column(columnDefinition = "text")
+    private String climate;
+
+    private String imagePath;
+
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Hotel> hotels;
 
-    @RestResource(exported = false)
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Tour> tours;
 }

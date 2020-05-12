@@ -1,5 +1,6 @@
 package com.travellab.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @RestResource(exported = false)
     @ManyToOne
@@ -42,11 +43,9 @@ public class Ticket {
 
     private int numberOfPeople;
 
-    @RestResource(exported = false)
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sale> sales;
 
-    @RestResource(exported = false)
     @OneToOne
     private TicketReturn returnState;
 

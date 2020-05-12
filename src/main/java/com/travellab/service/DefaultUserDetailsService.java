@@ -1,7 +1,6 @@
 package com.travellab.service;
 
 import com.travellab.domain.UserDetailsRepresentation;
-import com.travellab.repository.ClientRepository;
 import com.travellab.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
