@@ -18,14 +18,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
-@ToString
 @Entity
 public class Ticket {
 
@@ -43,8 +42,9 @@ public class Ticket {
 
     private int numberOfPeople;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Sale> sales;
+    private Set<Sale> sales = new HashSet<>();
 
     @OneToOne
     private TicketReturn returnState;

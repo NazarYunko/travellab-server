@@ -1,7 +1,11 @@
 package com.travellab.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.travellab.CountryDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +23,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
-@ToString
 @Entity
 public class Hotel {
 
@@ -36,11 +39,12 @@ public class Hotel {
     private String name;
 
     @RestResource(exported = false)
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Country country;
 
     private String address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Tour> tours;
+    private Set<Tour> tours = new HashSet<>();
 }

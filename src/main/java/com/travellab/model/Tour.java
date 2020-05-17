@@ -17,13 +17,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
-@ToString
 @Entity
 public class Tour {
 
@@ -47,6 +46,7 @@ public class Tour {
 
     private LocalDateTime tourStopDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Ticket> tickets;
+    private Set<Ticket> tickets = new HashSet<>();
 }

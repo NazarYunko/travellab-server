@@ -1,6 +1,8 @@
 package com.travellab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,15 +18,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "id")
-@ToString
 @Entity
 public class Country {
 
@@ -48,9 +47,11 @@ public class Country {
 
     private String imagePath;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Hotel> hotels;
+    private Set<Hotel> hotels = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Tour> tours;
+    private Set<Tour> tours = new HashSet<>();
 }

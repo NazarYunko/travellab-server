@@ -1,5 +1,7 @@
 package com.travellab.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,6 +16,13 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class CommonConfiguration {
 
     private static final String SIGNING_KEY = "signing_key";
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        return mapper;
+    }
 
     @Bean
     public TokenStore tokenStore() {

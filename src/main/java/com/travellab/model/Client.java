@@ -16,13 +16,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "id")
-@ToString
 @Entity
 public class Client {
 
@@ -38,6 +38,7 @@ public class Client {
 
     private String phoneNumber;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Sale> sales;
+    private Set<Sale> sales = new HashSet<>();
 }
