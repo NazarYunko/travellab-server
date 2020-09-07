@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter
@@ -42,5 +43,5 @@ public class Sale {
 
     private int numberOfChild;
 
-    private LocalDateTime dateOfSale;
+    private Timestamp dateOfSale;
 }

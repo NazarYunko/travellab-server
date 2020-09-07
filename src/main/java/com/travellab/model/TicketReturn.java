@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter
@@ -29,7 +30,7 @@ public class TicketReturn {
     @OneToOne(mappedBy = "returnState")
     private Ticket ticket;
 
-    private LocalDateTime dateOfReturn;
+    private Timestamp dateOfReturn;
 
     private boolean isApproved;
 }

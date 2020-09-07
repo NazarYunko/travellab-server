@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,9 +43,11 @@ public class Tour {
     @ManyToOne
     private Hotel hotel;
 
-    private LocalDateTime tourStartDate;
+    private double price;
 
-    private LocalDateTime tourStopDate;
+    private Timestamp tourStartDate;
+
+    private Timestamp tourStopDate;
 
     @JsonIgnore
     @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
@@ -36,9 +38,9 @@ public class Ticket {
     @ManyToOne
     private Tour tour;
 
-    private LocalDateTime dateOfDeparture;
+    private Timestamp dateOfDeparture;
 
-    private float price;
+    private BigDecimal price;
 
     private int numberOfPeople;
 
